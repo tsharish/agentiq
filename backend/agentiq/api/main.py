@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from agentiq.settings import ORIGIN
+
 app = FastAPI()
 
-origins = ["http://localhost:5173"]
+origins = [ORIGIN]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
