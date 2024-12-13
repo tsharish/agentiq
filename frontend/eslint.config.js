@@ -1,4 +1,4 @@
-import pluginVue from 'eslint-plugin-vue'
+import pluginVue, { rules } from 'eslint-plugin-vue'
 import vueTsEslintConfig from '@vue/eslint-config-typescript'
 
 export default [
@@ -10,6 +10,13 @@ export default [
     {
         name: 'app/files-to-ignore',
         ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
+    },
+
+    {
+        rules: {
+            "vue/multi-word-component-names": "off",
+            "vue/no-reserved-component-names": "off",
+        }
     },
 
     ...pluginVue.configs['flat/essential'],

@@ -3,3 +3,4 @@ cohere
 LLMEasyTools
 python-dotenv
 fastapi[standard]
+pyjwt[crypto]
