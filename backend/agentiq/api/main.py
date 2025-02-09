@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from agentiq.settings import ORIGIN
 from agentiq.api.security import authenticate_user, create_access_token
+from agentiq.api.chat.routes import router as chat_router
+from agentiq.api.customer.routes import router as customer_router
 
 app = FastAPI()
 
@@ -16,6 +18,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(chat_router)
+app.include_router(customer_router)
 
 
 @app.get("/")

@@ -15,14 +15,10 @@ const router = createRouter({
         {
             path: '/',
             component: Layout,
+            meta: { requiresAuth: true },
             children: [
                 {
                     path: '',
-                    component: () => import('@/views/Home.vue'),
-                    meta: { requiresAuth: true }
-                },
-                {
-                    path: 'home',
                     name: 'home',
                     component: () => import('@/views/Home.vue'),
                     meta: { requiresAuth: true }
@@ -48,16 +44,11 @@ router.beforeEach((to, from, next) => {
     const auth = useAuthStore()
 
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        let user = null
-        let userInStorage = localStorage.getItem('user')
-        if (userInStorage) {
-            user = JSON.parse(userInStorage)
-        }
-        if ((user && user.access_token) || auth.authenticated) {
+        if (auth.authenticated) {
             next()
-            return
+        } else {
+            next('/login')
         }
-        next('/login')
     } else {
         next()
     }

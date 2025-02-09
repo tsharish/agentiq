@@ -2,9 +2,11 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import ChatDialog from '@/components/ChatDialog.vue'
 
 const router = useRouter()
 const auth = useAuthStore()
+const chatVisible = ref(false)
 const items = ref([
     {
         label: 'Home',
@@ -54,8 +56,38 @@ function logout() {
             </template>
         </Menubar>
     </div>
-    <!--<div class="mx-2 p-1 border-solid border rounded-md" style="min-height: 89vh">-->
     <div class="mx-2 p-1">
         <router-view />
+        <ChatDialog :visible="chatVisible" @close="chatVisible = false" />
+        <Button variant="outlined" raised class="fixed bottom-5 right-5 bg-primary-contrast glowing-border"
+            @click="chatVisible = !chatVisible">
+            <fa-icon icon="fa-solid fa-robot" />
+        </Button>
     </div>
 </template>
+
+<style scoped>
+.glowing-border {
+    padding: 10px 10px;
+    font-size: 1.5rem;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: #ff00ff;
+
+    animation: glow-border 3s infinite alternate;
+}
+
+@keyframes glow-border {
+    0% {
+        border-color: #ff00ff;
+    }
+
+    50% {
+        border-color: #ffcc00;
+    }
+
+    100% {
+        border-color: #ff00ff;
+    }
+}
+</style>
