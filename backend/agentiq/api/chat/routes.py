@@ -5,11 +5,23 @@ from agentiq.core.agent import Agent
 from agentiq.core.tool import Tool
 from agentiq.api.security import get_current_user
 from agentiq.api.customer.service import get_customer_by_name, create_customer
+from agentiq.api.opportunity.service import (
+    get_opportunity_by_name,
+    create_opportunity,
+    close_opportunity,
+)
 
 from .models import Message
 
 router = APIRouter(prefix="/chat", tags=["chat"])
-agent = Agent(tools=[Tool(create_customer), Tool(get_customer_by_name)])
+tools = [
+    Tool(create_customer),
+    Tool(get_customer_by_name),
+    Tool(create_opportunity),
+    Tool(close_opportunity),
+    Tool(get_opportunity_by_name),
+]
+agent = Agent(tools=tools)
 
 
 @router.post("/")
