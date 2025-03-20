@@ -35,6 +35,12 @@ const router = createRouter({
                     component: () => import('@/views/Opportunities.vue'),
                     meta: { requiresAuth: true }
                 },
+                {
+                    path: 'events',
+                    name: 'events',
+                    component: () => import('@/views/Events.vue'),
+                    meta: { requiresAuth: true }
+                },
             ]
         }
     ],

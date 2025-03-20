@@ -26,7 +26,7 @@ def create_customer(
     state: Annotated[str, "State"],
     country: Annotated[str, "Country"],
 ):
-    """Create a customer record given the customer name, city, state and country"""
+    """Creates a customer record given the customer name, city, state and country"""
     if any(customer["name"].lower() == name.lower() for customer in customers):
         return f"Customer {name} already exists."
 

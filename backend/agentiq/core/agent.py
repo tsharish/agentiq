@@ -1,21 +1,36 @@
 import json
+from types import FunctionType
 
 from agentiq.core.llm import generate
 from agentiq.core.tool import Tool
 
 
 class Agent:
-    def __init__(self, tools: list[Tool]) -> None:
+    def __init__(self, tools: list[Tool], system_message: str | FunctionType) -> None:
         self.session_id = 0
         self.memory: dict[int, list[dict]] = {}
         self.tools = tools
         self.tool_map = {tool.name: tool for tool in self.tools}
+        self.system_message = system_message
 
     def run(self, message: str, session_id: int | None = None):
         if session_id is None:
             self.session_id += 1
             session_id = self.session_id
-            self.memory[session_id] = [{"role": "user", "content": message}]
+
+            if isinstance(self.system_message, str) == str:
+                system_message = self.system_message
+            elif isinstance(self.system_message, FunctionType):
+                system_message = self.system_message()
+            else:
+                raise TypeError(
+                    "System message must either be a string or a function that returns a string"
+                )
+
+            self.memory[session_id] = [
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": message},
+            ]
         elif session_id not in self.memory:
             raise ValueError(f"Session ID {session_id} does not exist.")
         else:

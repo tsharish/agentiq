@@ -23,6 +23,11 @@ const items = ref([
         icon: 'fa-solid fa-money-bills',
         route: { name: 'opportunities' }
     },
+    {
+        label: 'Events',
+        icon: 'fa-solid fa-calendar',
+        route: { name: 'events' }
+    },
 ])
 
 function logout() {

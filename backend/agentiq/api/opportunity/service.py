@@ -1,4 +1,4 @@
-from typing import Annotated, Literal, Optional
+from typing import Annotated
 
 from .models import Stage
 from .data import opportunities
@@ -28,7 +28,7 @@ def create_opportunity(
     customer_id: Annotated[int, "Customer ID"],
     amount: Annotated[float, "Amount"],
 ):
-    """Create an opportunity record given the opportunity name, customer id and amount"""
+    """Creates an opportunity record given the opportunity name, customer id and amount"""
     opportunities.append(
         {
             "id": max((opportunity["id"] for opportunity in opportunities), default=0) + 1,
@@ -44,7 +44,7 @@ def create_opportunity(
 def close_opportunity(
     name: Annotated[str, "Opportunity Name"], stage: Annotated[str, "Opportunity Stage"] = None
 ):
-    """Close an opportunity given the opportunity name and stage"""
+    """Closes an opportunity given the opportunity name and stage"""
     if stage is None:
         return "Please ask the user to specify the stage as either 'Closed Won' or 'Closed Lost'."
 

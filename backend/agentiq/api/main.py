@@ -8,6 +8,7 @@ from agentiq.api.security import authenticate_user, create_access_token
 from agentiq.api.chat.routes import router as chat_router
 from agentiq.api.customer.routes import router as customer_router
 from agentiq.api.opportunity.routes import router as opportunity_router
+from agentiq.api.event.routes import router as event_router
 
 app = FastAPI()
 
@@ -23,6 +24,7 @@ app.add_middleware(
 app.include_router(chat_router)
 app.include_router(customer_router)
 app.include_router(opportunity_router)
+app.include_router(event_router)
 
 
 @app.get("/")

@@ -1,22 +1,173 @@
 <script setup lang="ts">
-import axios from 'axios'
-import { ref, onMounted } from 'vue'
-
-const api = axios.create({ baseURL: import.meta.env.VITE_API_URL })
-const message = ref('')
-
-onMounted(async () => {
-    try {
-        const response = await api.get('/')
-        message.value = response.data.message
-    } catch (error) {
-        message.value = "Unable to reach the backend"
-        console.log(error)
-    }
-})
-
 </script>
 
 <template>
-    <p>{{ message }}</p>
+    <div class="card">
+        <Accordion :value="['0']" multiple>
+            <AccordionPanel value="0">
+                <AccordionHeader>Welcome to Agentiq CRM!</AccordionHeader>
+                <AccordionContent>
+                    <p>
+                        Agentiq CRM demonstrates the powerful agentic AI capabilities of <strong>Agentiq</strong>.
+                        Agentiq is an intelligent assistant that can be accessed using the chat button located at the
+                        bottom right corner of the screen. <br><br>
+                        Below, you'll find an overview of the core features and tools available within Agentiq CRM. Each
+                        tool is available across the entire system, making it easy to interact with the data and
+                        automate tasks.
+                    </p>
+                </AccordionContent>
+            </AccordionPanel>
+            <AccordionPanel value="1">
+                <AccordionHeader>Customers</AccordionHeader>
+                <AccordionContent>
+                    <p class="mb-3">The <strong>Customers</strong> section displays all customer records. Here are the
+                        tools available for managing customer information:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Description</th>
+                                <th>Example Prompts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    get_customer_by_name
+                                </td>
+                                <td>
+                                    Returns customer details including address based on the name
+                                </td>
+                                <td>
+                                    <i>Where is TechNova located?</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    create_customer
+                                </td>
+                                <td>
+                                    Creates a customer record by providing the customer's name, city, state and country
+                                </td>
+                                <td>
+                                    <i>Create a customer for Presalesly AI located in Atlanta, Georgia, United
+                                        States</i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </AccordionContent>
+            </AccordionPanel>
+            <AccordionPanel value="2">
+                <AccordionHeader>Opportunities</AccordionHeader>
+                <AccordionContent>
+                    <p class="mb-3">In the <strong>Opportunities</strong> section, you can view all the opportunities in
+                        CRM. Available tools include:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Description</th>
+                                <th>Example Prompts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    get_opportunity_by_name
+                                </td>
+                                <td>
+                                    Returns opportunity details based on the opportunity name
+                                </td>
+                                <td>
+                                    <i>What is the value and stage of the Cloud Migration Project opportunity?</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    create_opportunity
+                                </td>
+                                <td>
+                                    Creates an opportunity record by specifying the opportunity name, customer ID and
+                                    amount
+                                </td>
+                                <td>
+                                    <i>Create an opportunity called HCM Implementation for Skyline Dynamics for
+                                        120000.</i> This prompt will also invoke the get_customer_by_name tool to
+                                    retrieve the customer ID.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    close_opportunity
+                                </td>
+                                <td>
+                                    Closes an opportunity given the opportunity name and stage
+                                </td>
+                                <td>
+                                    <i>Close the Cybersecurity Upgrade opportunity</i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </AccordionContent>
+            </AccordionPanel>
+            <AccordionPanel value="3">
+                <AccordionHeader>Events</AccordionHeader>
+                <AccordionContent>
+                    <p class="mb-3">The <strong>Events</strong> section displays all events for a selected date (default
+                        is today). Here are the tools available for managing events:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Description</th>
+                                <th>Example Prompts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    get_events_by_date
+                                </td>
+                                <td>
+                                    Returns all events for a specific date
+                                </td>
+                                <td>
+                                    <i>What meetings do I have today?</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    create_event
+                                </td>
+                                <td>
+                                    Creates a new event based on event name, date, start and end time
+                                </td>
+                                <td>
+                                    <i>Create an hour-long appointment for the first available free slot after 9am today
+                                        titled RFP response review. </i>This prompt will also invoke the
+                                    get_events_by_date tool to retrieve the events.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </AccordionContent>
+            </AccordionPanel>
+        </Accordion>
+    </div>
 </template>
+
+<style scoped>
+table {
+    border-collapse: collapse;
+    width: 90%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+</style>
