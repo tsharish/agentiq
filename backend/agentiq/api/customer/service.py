@@ -40,3 +40,23 @@ def create_customer(
         }
     )
     return f"Customer {name} successfully created"
+
+
+def edit_customer(
+    customer_id: Annotated[int, "ID of the customer"],
+    name: Annotated[str, "New Customer Name"],
+    city: Annotated[str, "New City"],
+    state: Annotated[str, "New State"],
+    country: Annotated[str, "New Country"],
+):
+    """Edits a customer record given the customer ID and new details"""
+    customer = next((customer for customer in customers if customer["id"] == customer_id), None)
+    if not customer:
+        return f"Customer with ID {customer_id} not found."
+
+    customer["name"] = name if name else customer["name"]
+    customer["city"] = city if city else customer["city"]
+    customer["state"] = state if state else customer["state"]
+    customer["country"] = country if country else customer["country"]
+
+    return f"Customer {name} successfully updated"

@@ -18,7 +18,7 @@ class Agent:
             self.session_id += 1
             session_id = self.session_id
 
-            if isinstance(self.system_message, str) == str:
+            if isinstance(self.system_message, str):
                 system_message = self.system_message
             elif isinstance(self.system_message, FunctionType):
                 system_message = self.system_message()

@@ -26,32 +26,36 @@
                         <thead>
                             <tr>
                                 <th>Tool</th>
-                                <th>Description</th>
                                 <th>Example Prompts</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    get_customer_by_name
+                                    <i>get_customer_by_name:</i> Returns customer details including address
+                                    based on the name
                                 </td>
                                 <td>
-                                    Returns customer details including address based on the name
-                                </td>
-                                <td>
-                                    <i>Where is TechNova located?</i>
+                                    <i>"Where is TechNova located?"</i>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    create_customer
+                                    <i>create_customer:</i> Creates a customer record by providing the customer's
+                                    name, city, state and country
                                 </td>
                                 <td>
-                                    Creates a customer record by providing the customer's name, city, state and country
+                                    <i>"Create a customer for Presalesly AI located in Atlanta, Georgia, United
+                                        States"</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i>edit_customer:</i> Edits a customer record given the customer ID and new
+                                    details
                                 </td>
                                 <td>
-                                    <i>Create a customer for Presalesly AI located in Atlanta, Georgia, United
-                                        States</i>
+                                    <i>"Update the city for GreenEdge Innovations to Palo Alto"</i>
                                 </td>
                             </tr>
                         </tbody>
@@ -67,45 +71,52 @@
                         <thead>
                             <tr>
                                 <th>Tool</th>
-                                <th>Description</th>
                                 <th>Example Prompts</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    get_opportunity_by_name
+                                    <i>get_opportunity_by_name:</i> Returns opportunity details based on the opportunity
+                                    name
                                 </td>
                                 <td>
-                                    Returns opportunity details based on the opportunity name
-                                </td>
-                                <td>
-                                    <i>What is the value and stage of the Cloud Migration Project opportunity?</i>
+                                    <i>"What is the value and stage of the Cloud Migration Project opportunity?"</i>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    create_opportunity
+                                    <i>create_opportunity:</i> Creates an opportunity record by specifying the
+                                    opportunity name, customer ID and amount
                                 </td>
                                 <td>
-                                    Creates an opportunity record by specifying the opportunity name, customer ID and
-                                    amount
-                                </td>
-                                <td>
-                                    <i>Create an opportunity called HCM Implementation for Skyline Dynamics for
-                                        120000.</i> This prompt will also invoke the get_customer_by_name tool to
-                                    retrieve the customer ID.
+                                    <i>"Create an opportunity called HCM Implementation for Skyline Dynamics for
+                                        120000"</i>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    close_opportunity
+                                    <i>close_opportunity:</i> Closes an opportunity given the opportunity name and stage
                                 </td>
                                 <td>
-                                    Closes an opportunity given the opportunity name and stage
+                                    <i>"Close the Cybersecurity Upgrade opportunity"</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i>edit_opportunity:</i> Edits an opportunity record given the opportunity ID and
+                                    new details
                                 </td>
                                 <td>
-                                    <i>Close the Cybersecurity Upgrade opportunity</i>
+                                    <i>"Update the CRM Expansion opportunity to 85K"</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i>delete_opportunity:</i> Deletes an opportunity record given the opportunity ID
+                                </td>
+                                <td>
+                                    <i>"Delete the Network Security Audit opportunity"</i>
                                 </td>
                             </tr>
                         </tbody>
@@ -121,33 +132,26 @@
                         <thead>
                             <tr>
                                 <th>Tool</th>
-                                <th>Description</th>
                                 <th>Example Prompts</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    get_events_by_date
+                                    <i>get_events_by_date:</i> Returns all events for a specific date
                                 </td>
                                 <td>
-                                    Returns all events for a specific date
-                                </td>
-                                <td>
-                                    <i>What meetings do I have today?</i>
+                                    <i>"What meetings do I have today?"</i>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    create_event
+                                    <i>create_event:</i> Creates a new event based on event name, date, start and end
+                                    time
                                 </td>
                                 <td>
-                                    Creates a new event based on event name, date, start and end time
-                                </td>
-                                <td>
-                                    <i>Create an hour-long appointment for the first available free slot after 9am today
-                                        titled RFP response review. </i>This prompt will also invoke the
-                                    get_events_by_date tool to retrieve the events.
+                                    <i>"Create an hour-long appointment for the first available free slot after 9am
+                                        today titled RFP response review"</i>
                                 </td>
                             </tr>
                         </tbody>
@@ -161,7 +165,7 @@
 <style scoped>
 table {
     border-collapse: collapse;
-    width: 90%;
+    width: 100%;
 }
 
 td,

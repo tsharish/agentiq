@@ -60,3 +60,36 @@ def close_opportunity(
 
     opportunity["stage"] = stage
     return f"Opportunity {name} successfully closed with stage {stage}"
+
+
+def edit_opportunity(
+    opportunity_id: Annotated[int, "ID of the opportunity"],
+    name: Annotated[str, "New Opportunity Name"],
+    customer_id: Annotated[int, "New Customer ID"],
+    amount: Annotated[float, "New Amount"],
+):
+    """Edits an opportunity record given the opportunity ID and new details"""
+    opportunity = next(
+        (opportunity for opportunity in opportunities if opportunity["id"] == opportunity_id), None
+    )
+    if not opportunity:
+        return f"Opportunity with ID {opportunity_id} not found"
+
+    opportunity["name"] = name if name else opportunity["name"]
+    opportunity["customer_id"] = customer_id if customer_id else opportunity["customer_id"]
+    opportunity["amount"] = amount if amount else opportunity["amount"]
+
+    return f"Opportunity {name} successfully updated"
+
+
+def delete_opportunity(opportunity_id: Annotated[int, "ID of the opportunity to be deleted"]):
+    """Deletes an opportunity record given the opportunity ID"""
+    opportunity = next(
+        (opportunity for opportunity in opportunities if opportunity["id"] == opportunity_id), None
+    )
+
+    if not opportunity:
+        return f"Opportunity with ID {opportunity_id} not found"
+
+    opportunities.remove(opportunity)
+    return f"Opportunity with ID {opportunity_id} successfully deleted"
