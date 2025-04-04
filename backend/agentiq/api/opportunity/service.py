@@ -29,16 +29,17 @@ def create_opportunity(
     amount: Annotated[float, "Amount"],
 ):
     """Creates an opportunity record given the opportunity name, customer id and amount"""
+    id = max((opportunity["id"] for opportunity in opportunities), default=0) + 1
     opportunities.append(
         {
-            "id": max((opportunity["id"] for opportunity in opportunities), default=0) + 1,
+            "id": id,
             "name": name,
             "customer_id": customer_id,
             "amount": amount,
             "stage": Stage.open,
         }
     )
-    return f"Opportunity {name} successfully created"
+    return f"Opportunity {name} successfully created with ID {id}"
 
 
 def close_opportunity(

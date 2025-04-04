@@ -6,7 +6,7 @@ from agentiq.core.tool import Tool
 
 
 class Agent:
-    def __init__(self, tools: list[Tool], system_message: str | FunctionType) -> None:
+    def __init__(self, tools: list[Tool], system_message: str | FunctionType | None = None) -> None:
         self.session_id = 0
         self.memory: dict[int, list[dict]] = {}
         self.tools = tools

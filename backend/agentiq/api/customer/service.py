@@ -30,16 +30,17 @@ def create_customer(
     if any(customer["name"].lower() == name.lower() for customer in customers):
         return f"Customer {name} already exists."
 
+    id = max((customer["id"] for customer in customers), default=0) + 1
     customers.append(
         {
-            "id": max((customer["id"] for customer in customers), default=0) + 1,
+            "id": id,
             "name": name,
             "city": city,
             "state": state,
             "country": country,
         }
     )
-    return f"Customer {name} successfully created"
+    return f"Customer {name} successfully created with ID {id}"
 
 
 def edit_customer(
